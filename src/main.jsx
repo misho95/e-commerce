@@ -5,6 +5,10 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import Header from './components/header'
 import HomePage from './pages/homepage'
 import Category from './pages/category'
+import Item from './pages/item'
+import Cart from './pages/cart'
+import Search from './pages/search'
+
 
 const router = createBrowserRouter([
   {
@@ -21,6 +25,30 @@ const router = createBrowserRouter([
     <>
       <Header />
       <Category />
+    </>
+  },
+  {
+    path: '/item',
+    element:
+    <>
+      <Header />
+      <Item />
+    </>
+  },
+  {
+    path: '/cart',
+    element:
+    <>
+      <Header />
+      <Cart />
+    </>
+  },
+  {
+    path: '/search',
+    element:
+    <>
+      <Header />
+      <Search />
     </>
   }
 ])

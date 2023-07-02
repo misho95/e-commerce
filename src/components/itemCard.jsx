@@ -5,8 +5,8 @@ function ItemCard( {id, category, des, img, price, rating, title}){
 
 
     return(
-    <Link to={`/item=${id}`}>
-        <div className="w-80 flex flex-col justify-center items-center bg-gray-100 p-2">
+    <Link to={`/item?id=${id}`}>
+        <div className="w-80 flex flex-col justify-center items-center bg-gray-100 p-5">
             <img src={img} className="w-40 h-40"/>
             <h1>{title}</h1>
             <p>{price}$</p>
