@@ -1,10 +1,11 @@
-import { useState, useEffect } from "react";
-import Render from "../components/render";
+import { useState, useEffect, useContext } from "react";
+import { Context } from '../context'
 
 function Cart(){
 
-    const localCart = JSON.parse(localStorage.getItem('cart'));
-    const [ data, setData] = useState( localCart ? localCart : [])
+    const cart = useContext(Context);
+
+    const [ data, setData] = useState(cart.localCart)
 
     const changeData = (id, val) => {
         const map = data.map( (item) => {
@@ -28,7 +29,7 @@ function Cart(){
     }
 
     useEffect( () => {
-        localStorage.setItem('cart', JSON.stringify(data));
+        cart.updateLocalCart(data);
     }, [data])
 
 

@@ -1,18 +1,10 @@
 import { Link, useNavigate } from 'react-router-dom';
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, useContext } from 'react';
+import { Context } from '../context'
 
 function GadgetsBar(){
 
-        const [ cartNum, setCartNum ] = useState();
-     
-        useEffect( () => {
-            const cart = JSON.parse(localStorage.getItem('cart'));
-            const number = cart?.reduce( (val, el) => {
-                return val+= el.quantity;
-            }, 0)
-            setCartNum(number);
-        }, [])
-
+    const cartNum = useContext(Context);
 
         const navigate = useNavigate();
         const searchBar = useRef();
@@ -49,8 +41,8 @@ function GadgetsBar(){
                     shopping_bag
                     </span>
                     {
-                    cartNum > 0 &&
-                    <span className='absolute bg-white flex text-sm text-gray-800 px-1 rounded-full left-3 top-3'>{cartNum}</span>
+                    cartNum.cart > 0 &&
+                    <span className='absolute bg-white flex text-sm text-gray-800 px-1 rounded-full left-3 top-3'>{cartNum.cart}</span>
                     }
                 </button>
             </Link>

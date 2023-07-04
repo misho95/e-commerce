@@ -1,13 +1,15 @@
 import { useSearchParams } from "react-router-dom";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
+import { Context } from '../context'
+
 
 function Item(){
 
+    const cart = useContext(Context);
     const [searchParams, setSearchParams] = useSearchParams();
     const [ data, setData] = useState([]);
     const itemID = searchParams.get('id');
-    const Cart = JSON.parse(localStorage.getItem('cart'));
-    const [ localCart, setLocalCart ] = useState(Cart ? Cart : [])
+    const [ localCart, setLocalCart ] = useState(cart.localCart);
     const [ quantity, setQuantity] = useState(1);
 
     useEffect( () => {
@@ -49,7 +51,7 @@ function Item(){
     }
 
     useEffect( () => {
-        localStorage.setItem('cart', JSON.stringify(localCart));
+      cart.updateLocalCart(localCart)
     }, [localCart])
 
 
